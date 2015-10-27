@@ -1,7 +1,7 @@
 {
     "name": "copernica/smtpeter-php",
     "description": "PHP lib to send emails with SMTPeter API",
-    "keywords": [ "email", "copernica" ],
+    "keywords": [ "email", "copernica", "smtpeter" ],
     "homepage": "https://www.smtpeter.com",
     "type": "library",
     "license": "MIT",
