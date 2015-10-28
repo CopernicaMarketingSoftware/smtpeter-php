@@ -4,7 +4,17 @@ A library to abstract API calls to SMTPeter REST API. It exposes one class: Emai
 This class can be used to easily created email message that can be sent via 
 SMTPeter.
 
+# Installation
+
+Package can be installed via composer cli, executing following line.
+
+```
+composer require copernica/smtpeter-php
+```
+
 # Example
+
+Sending very simple email message can be done with following script.
 
 ```php
 /**
