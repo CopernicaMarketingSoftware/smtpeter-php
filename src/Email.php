@@ -81,7 +81,7 @@ class Email
      *  @param  string
      *  @return SMTPeter\Email
      */
-    public functin setText($text)
+    public function setText($text)
     {
         // set txt version
         $this->data->text = $text;
