@@ -117,7 +117,7 @@ class Email
         $this->data->recipient = $addresses;
         
         // allow chaining
-        return $this
+        return $this;
     }
     
     /**
