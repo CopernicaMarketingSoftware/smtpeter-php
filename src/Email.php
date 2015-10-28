@@ -42,7 +42,7 @@ class Email
     {
         // initialize object
         $this->apiToken = $apiToken;
-        $this->data = new stdClass;
+        $this->data = new \stdClass;
     }
     
     /**
@@ -177,7 +177,7 @@ class Email
     public function setOriginalRecipient($recipient)
     {
         // ensure that we have dsn property
-        if (!property_exists($this->data, 'dsn')) $this->data->dsn = new stdClass;
+        if (!property_exists($this->data, 'dsn')) $this->data->dsn = new \stdClass;
         
         // set original recipient
         $this->data->dsn->orcpt = $recipient;
@@ -197,7 +197,7 @@ class Email
     public function setNotifications(array $types)
     {
         // ensure that we have dsn property
-        if (!property_exists($this->data, 'dsn')) $this->data->dsn = new stdClass;
+        if (!property_exists($this->data, 'dsn')) $this->data->dsn = new \stdClass;
         
         // if we have a never value it should be supplied as it is, not in array
         if (in_array('NEVER', $types)) $this->notify->dsn = self::NOTIFY_NEVER;
@@ -219,7 +219,7 @@ class Email
     public function setReturn($return)
     {
         // ensure that we have dsn property
-        if (!property_exists($this->data, 'dsn')) $this->data->dsn = new stdClass;
+        if (!property_exists($this->data, 'dsn')) $this->data->dsn = new \stdClass;
         
         // set the return type
         $this->data->dsn->ret = $return;
