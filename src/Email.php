@@ -76,7 +76,22 @@ class Email
     }
     
     /**
-     *  Set mail html
+     *  Set mail text version.
+     *
+     *  @param  string
+     *  @return SMTPeter\Email
+     */
+    public functin setText($text)
+    {
+        // set txt version
+        $this->data->text = $text;
+        
+        // allow chaining
+        return $this;
+    }
+    
+    /**
+     *  Set mail html version.
      *
      *  @param  string
      *  @return SMTPeter\Email
