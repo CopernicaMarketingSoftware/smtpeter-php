@@ -106,6 +106,39 @@ class Email
     }
     
     /**
+     *  Set array of email addresses as recipients.
+     *
+     *  @param  array   Array of email addresses.
+     *  @return SMTPeter\Email
+     */
+    public function setRecipients(array $addresses)
+    {
+        // set addresses as recipients
+        $this->data->recipient = $addresses;
+        
+        // allow chaining
+        return $this
+    }
+    
+    /**
+     *  Append email addresses to recipients list
+     *
+     *  @param  array   Array of email addresses.
+     *  @return SMTPeter\Email
+     */
+    public function appendRecipients(array $addresses)
+    {
+        // ensure that we have an array
+        if (!is_array($this->data->recipient)) $this->data->recipient = array();
+        
+        // merge current array with new array
+        $this->data->recipient = array_merge($this->data->recipient, $addresses);
+        
+        // allow chaining
+        return $this;
+    }
+    
+    /**
      *  Set TO addresses
      *
      *  @param  array
@@ -196,6 +229,8 @@ class Email
     }
     
     /**
+     *  Set inline css option.
+     *
      *  @param  boolean
      *  @return SMTPeter\Email
      */
@@ -209,6 +244,8 @@ class Email
     }
     
     /**
+     *  Set track clicks option.
+     *
      *  @param  boolean
      *  @return SMTPeter\Email
      */
@@ -222,6 +259,8 @@ class Email
     }
     
     /**
+     *  Set track bounces option.
+     *
      *  @param  boolean
      *  @return SMTPeter\Email
      */
@@ -235,6 +274,8 @@ class Email
     }
     
     /**
+     *  Set track opens option.
+     *
      *  @param  boolean
      *  @return SMTPeter\Email
      */
@@ -270,5 +311,8 @@ class Email
         
         // close curl instance
         curl_close($handle);
+        
+        // return result
+        return $result;
     }
 }
