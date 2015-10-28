@@ -1,0 +1,12 @@
+<phpunit bootstrap="vendor/autoload.php">
+    <php>
+        <!-- For test sending value of this variable should be a test token. It
+        can be obtainer on SMTPeter website. -->
+        <env name="apiToken" value=""/>
+    </php>
+    <testsuites>
+        <testsuite name="SMTPeter">
+            <directory>tests/</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

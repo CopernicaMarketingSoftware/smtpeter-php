@@ -144,7 +144,7 @@ class Email
     public function appendRecipients(array $addresses)
     {
         // ensure that we have an array
-        if (!is_array($this->data->recipient)) $this->data->recipient = array();
+        if (!property_exists($this->data, 'recipient') || !is_array($this->data->recipient)) $this->data->recipient = array();
         
         // merge current array with new array
         $this->data->recipient = array_merge($this->data->recipient, $addresses);
@@ -305,18 +305,33 @@ class Email
     
     /**
      *  Send the email.
+     *
+     *  @return mixed   If sending is successful and API acknowledge the request
+     *                  this method will return TRUE. If there were any problem
+     *                  with sending ot API does not acknowledge the response 
+     *                  it will return a stdClass with explanation what went wrong.
+     *                  The error message will look like this:
+     *                  {
+     *                      "error": "The actual error message"
+     *                  }
      */
     public function send()
     {
         // initialize curl instance
         $handle = curl_init();
         
+        // encode data into string
+        $dataString = json_encode($this->data);
+        
         // set needed curl options
         curl_setopt($handle, CURLOPT_URL, "https://www.smtpeter.com/v1/send?access_token={$this->apiToken}");
-        curl_setopt($handle, CURLOPT_HEADER, 'Content-Type: application/json');
+        curl_setopt($handle, CURLOPT_HTTPHEADER, array (
+            'Content-Type: application/json',
+            'Content-Length: '.strlen($dataString)
+        ));
         curl_setopt($handle, CURLOPT_POST, 1);
         curl_setopt($handle, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($handle, CURLOPT_POSTFILEDS, json_encode($this->data));
+        curl_setopt($handle, CURLOPT_POSTFIELDS, $dataString);
         
         // send request to API
         $result = curl_exec($handle);
@@ -327,7 +342,10 @@ class Email
         // close curl instance
         curl_close($handle);
         
+        // if we have a 200 response we can say that sending was successful
+        if ($httpcode == 200) return true;
+        
         // return result
-        return $result;
+        return json_decode($result);
     }
 }
