@@ -1,8 +1,8 @@
 # SMTPeter composer package
 
-A library to abstract API calls to SMTPeter REST API. It exposes one class: Email.
-This class can be used to easily created email message that can be sent via 
-SMTPeter.
+A library to abstract API calls to [SMTPeter REST API](https://www.smtpeter.com/documentation/api-documentation/rest-api). 
+It exposes one class: Email. This class can be used to easily created email 
+message that can be sent via [SMTPeter](https://www.smtpeter.com).
 
 # Installation
 
